@@ -12,21 +12,19 @@ weatherForm.addEventListener("submit", (e) => {
 
   messageOne.textContent = "loading....";
   messageTwo.textContent = "";
-  fetch("http://127.0.0.1:3000/weather?address=" + location).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          messageOne.textContent = data.error;
-        } else {
-          messageOne.textContent = data.location;
-          //messageTwo.textContent = data.forecast;
-          const weatherInfo = data.forecast;
-          messageTwo.textContent = `Temperature  : ${weatherInfo.temperature} degree celsius`;
-          messageThree.textContent = `Minimum Temperature  : ${weatherInfo.minimumTemperature} degree celsius`;
-          messageFour.textContent = `Maximum Temperature  : ${weatherInfo.maximumTemperature} degree celsius`;
-          messageFive.textContent = `Humidity : ${weatherInfo.humidity} %`;
-        }
-      });
-    }
-  );
+  fetch("/weather?address=" + location).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        messageOne.textContent = data.error;
+      } else {
+        messageOne.textContent = data.location;
+        //messageTwo.textContent = data.forecast;
+        const weatherInfo = data.forecast;
+        messageTwo.textContent = `Temperature  : ${weatherInfo.temperature} degree celsius`;
+        messageThree.textContent = `Minimum Temperature  : ${weatherInfo.minimumTemperature} degree celsius`;
+        messageFour.textContent = `Maximum Temperature  : ${weatherInfo.maximumTemperature} degree celsius`;
+        messageFive.textContent = `Humidity : ${weatherInfo.humidity} %`;
+      }
+    });
+  });
 });
