@@ -1,5 +1,3 @@
-console.log("Clint side javascript is loaded");
-
 const weatherForm = document.querySelector("form");
 const search = document.querySelector("input");
 const messageOne = document.querySelector("#message-1");
@@ -18,7 +16,6 @@ weatherForm.addEventListener("submit", (e) => {
     (response) => {
       response.json().then((data) => {
         if (data.error) {
-          console.log(data.error);
           messageOne.textContent = data.error;
         } else {
           messageOne.textContent = data.location;
@@ -28,8 +25,6 @@ weatherForm.addEventListener("submit", (e) => {
           messageThree.textContent = `Minimum Temperature  : ${weatherInfo.minimumTemperature} degree celsius`;
           messageFour.textContent = `Maximum Temperature  : ${weatherInfo.maximumTemperature} degree celsius`;
           messageFive.textContent = `Humidity : ${weatherInfo.humidity} %`;
-          console.log(data.forecast);
-          console.log(data.location);
         }
       });
     }
